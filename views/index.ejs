@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inventory App</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar">
+        <h2>Inventory App</h2>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/newgame">Add a New Game</a></li>
+          <li><a href="/newdev">Add a New Developer</a></li>
+          <li><a href="/newgenre">Add a New Genre</a></li>
+          <li><a href="/dev">See All Developers</a></li>
+          <li><a href="/genre">See All Genres</a></li>
+        </ul>
+      </div>
+      <div class="main-content">
+        <h1>Games List</h1>
+        <ul>
+          <% if (games.length > 0) { %> <% games.forEach((game) => { %>
+          <li>
+            <p><strong><%= game.title %></strong></p>
+            <p>Genre: <%= game.genre_name %></p>
+            <p>Developer: <%= game.dev_name %></p>
+            <p>Price: $<%= game.price %></p>
+            <p>
+              <small
+                >Release Date: <%= new Date(game.release_date).toLocaleString()
+                %></small
+              >
+            </p>
+            <button class="delete-btn" data-id="<%= game.id %>">Delete</button>
+          </li>
+          <% }) %> <% } else { %>
+          <li>No items found.</li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $(".delete-btn").click(function () {
+          const gameId = $(this).data("id");
+          console.log("Deleting game with ID:", gameId);
+          if (confirm("Are you sure you want to delete this game?")) {
+            $.ajax({
+              url: `/games/${gameId}`,
+              type: "DELETE",
+              success: function (response) {
+                alert(response.message);
+
+                location.reload(); // Reload the page to reflect changes
+              },
+              error: function (err) {
+                alert("Error deleting genre");
+                console.error("AJAX Error:", err);
+              },
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
