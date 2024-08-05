@@ -2,7 +2,7 @@
 A web application to manage an inventory of games, along with their developers and genres. This app allows users to add games, developers, and genres to the database.
 
 
-# Link to project: [http://recruiters-love-seeing-live-demos.com/](https://gameinventoryapp.adaptable.app)
+# Link to project: https://gameinventoryapp.adaptable.app
 
 # How It's Made:
 Tech used: Node.js, Express, PostgreSQL, EJS
