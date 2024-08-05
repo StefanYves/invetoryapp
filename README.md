@@ -13,7 +13,9 @@ The app features three main tables in the database: games, developers, and genre
 
 # Features:
 Add new games to the inventory
+
 Add developers and genres associated with each game
+
 View the list of games, developers, and genres
 
 # Lessons Learned:
